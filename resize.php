@@ -26,5 +26,17 @@ function create_thumbnail($path, $save, $width, $height) {
 		//другое
 		$new_size = array($width, $height);
 		$src_pos = array(0,0);
+  }
+  
+  $new_size[0] = max($new_size[0], 1);
+	$new_size[1] = max($new_size[1], 1);
+
+	imagecopyresampled($thumb, $src, 0, 0, $src_pos[0], $src_pos[1], $new_size[0], $new_size[1], $size[0], $size[1]);
+  // copy and change image size
+  
+	if($save === false) {
+		return imagepng($thumb); //return JPEG/PNG/GIF image
+	} else {
+		return imagepng($thumb, $save);//save JPEG/PNG/GIF image
 	}
 }
