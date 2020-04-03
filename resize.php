@@ -12,5 +12,9 @@ function create_thumbnail($path, $save, $width, $height) {
  		$src = imagecreatefromgif($path);
 	} else {
 		return false;
-	}
+  }
+  
+  $thumb = imagecreatetruecolor($width, $height);
+	$src_aspect = $size[0] / $size[1]; // image width to height radio
+	$thumb_aspect = $width / $height; //thumb width to height radio
 }
