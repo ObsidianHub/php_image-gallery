@@ -28,6 +28,25 @@ include "fileLoad.php";
   </style>
 </head>
 <body>
-  
+  <br><br>
+  <form action="?" method="post" enctype="multipart/form-data">
+    <label>Размер не должен превышать 3mb<input type="file" name="imges"></label>
+    <input type="submit" value="Загрузить картинку">
+  </form>
+
+  <?php
+  $bigImgFolder = "img/big/";
+  $smallImgFolder = "img/small/";
+
+  if(isset($_FILES['imges'])) {
+    uploadFile($bigImgFolder, $smallImgFolder);
+  }
+  ?>
+
+  <div class="gallery">
+    <?php
+    outputImagesFromDir($bigImgFolder, $smallImgFolder);
+    ?>
+  </div>
 </body>
 </html>
