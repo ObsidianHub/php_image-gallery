@@ -26,5 +26,18 @@ function uploadFile($destinationFolder, $smallImgFolder) {
   }
 }
 
-function outputImagesFromDir($bigDir, $smallDir) {}
+function outputImagesFromDir($bigDir, $smallDir) {
+  $smallFiles = scandir($smallDir);
+  $bigFiles = scandir($bigDir);
+  $quantityFiles = count($smallFiles);
+
+  if($quantityFiles >= 3){
+    for($i = 2; $i < $quantityFiles; $i++){
+      echo "<a href='$bigDir$bigFiles[$i]' target='_blank' class='item'><img src='$smallDir$smallFiles[$i]'></a>";
+    }
+  }
+  else{
+    echo "нет файлов";
+  }
+}
 ?>
