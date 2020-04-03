@@ -15,6 +15,16 @@ function create_thumbnail($path, $save, $width, $height) {
   }
   
   $thumb = imagecreatetruecolor($width, $height);
-	$src_aspect = $size[0] / $size[1]; // image width to height radio
-	$thumb_aspect = $width / $height; //thumb width to height radio
+	$src_aspect = $size[0] / $size[1]; // image width to height ratio
+  $thumb_aspect = $width / $height; //thumb width to height ratio
+  
+  if($src_aspect < $thumb_aspect) {
+		$scale = $height / $size[1];
+		$new_size = array($height * $src_aspect, $height);
+		$src_pos = array(($size[0] * $scale - $width) / $scale / 2, 0);
+	} else {
+		//другое
+		$new_size = array($width, $height);
+		$src_pos = array(0,0);
+	}
 }
